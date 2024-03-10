@@ -1,0 +1,131 @@
+2024-03-10T09:56:40.159133Z  INFO ThreadId(01) running Hermes v1.7.4+38f41c6
+2024-03-10T09:56:40.306561Z  INFO ThreadId(01) Creating new clients, new connection, and a new channel with order ORDER_UNORDERED2024-03-10T09:56:55.898427Z  INFO ThreadId(01) foreign_client.create{client=osmo-test-5->shielded-expedition.88f17d1d14:07-tendermint-0}: 🍭 client was created successfully id=07-tendermint-2272
+2024-03-10T09:57:01.579322Z  INFO ThreadId(01) foreign_client.create{client=shielded-expedition.88f17d1d14->osmo-test-5:07-tendermint-0}: 🍭 client was created successfully id=07-tendermint-2639
+2024-03-10T09:57:17.416518Z  INFO ThreadId(01) 🥂 shielded-expedition.88f17d1d14 => OpenInitConnection(OpenInit { Attributes { connection_id: connection-1079, client_id: 07-tendermint-2272, counterparty_connection_id: None, counterparty_client_id: 07-tendermint-2639 } }) at height 0-103378
+2024-03-10T09:57:54.221714Z  INFO ThreadId(01) 🥂 osmo-test-5 => OpenTryConnection(OpenTry { Attributes { connection_id: connection-2469, client_id: 07-tendermint-2639, counterparty_connection_id: connection-1079, counterparty_client_id: 07-tendermint-2272 } }) at height 5-5917965
+2024-03-10T09:58:22.548210Z  INFO ThreadId(01) 🥂 shielded-expedition.88f17d1d14 => OpenAckConnection(OpenAck { Attributes { connection_id: connection-1079, client_id: 07-tendermint-2272, counterparty_connection_id: connection-2469, counterparty_client_id: 07-tendermint-2639 } }) at height 0-103384
+2024-03-10T09:58:37.960604Z  INFO ThreadId(01) 🥂 osmo-test-5 => OpenConfirmConnection(OpenConfirm { Attributes { connection_id: connection-2469, client_id: 07-tendermint-2639, counterparty_connection_id: connection-1079, counterparty_client_id: 07-tendermint-2272 } }) at height 5-5917976
+2024-03-10T09:58:41.009067Z  INFO ThreadId(01) connection handshake already finished for Connection { delay_period: 0ns, a_side: ConnectionSide { chain: BaseChainHandle { chain_id: shielded-expedition.88f17d1d14 }, client_id: 07-tendermint-2272, connection_id: connection-1079 }, b_side: ConnectionSide { chain: BaseChainHandle { chain_id: osmo-test-5 }, client_id: 07-tendermint-2639, connection_id: connection-2469 } }
+2024-03-10T09:58:54.654743Z  INFO ThreadId(01) 🎊  shielded-expedition.88f17d1d14 => OpenInitChannel(OpenInit { port_id: transfer, channel_id: channel-660, connection_id: None, counterparty_port_id: transfer, counterparty_channel_id: None }) at height 0-103387
+2024-03-10T09:59:10.592747Z  INFO ThreadId(01) 🎊  osmo-test-5 => OpenTryChannel(OpenTry { port_id: transfer, channel_id: channel-6154, connection_id: connection-2469, counterparty_port_id: transfer, counterparty_channel_id: channel-660 }) at height 5-5917984
+2024-03-10T09:59:37.719082Z  INFO ThreadId(01) 🎊  shielded-expedition.88f17d1d14 => OpenAckChannel(OpenAck { port_id: transfer, channel_id: channel-660, connection_id: connection-1079, counterparty_port_id: transfer, counterparty_channel_id: channel-6154 }) at height 0-103391
+2024-03-10T09:59:55.626339Z  INFO ThreadId(01) 🎊  osmo-test-5 => OpenConfirmChannel(OpenConfirm { port_id: transfer, channel_id: channel-6154, connection_id: connection-2469, counterparty_port_id: transfer, counterparty_channel_id: channel-660 }) at height 5-5917995
+2024-03-10T10:00:01.770265Z  INFO ThreadId(01) channel handshake already finished for Channel { ordering: ORDER_UNORDERED, a_side: ChannelSide { chain: BaseChainHandle { chain_id: shielded-expedition.88f17d1d14 }, client_id: 07-tendermint-2272, connection_id: connection-1079, port_id: transfer, channel_id: channel-660, version: None }, b_side: ChannelSide { chain: BaseChainHandle { chain_id: osmo-test-5 }, client_id: 07-tendermint-2639, connection_id: connection-2469, port_id: transfer, channel_id: channel-6154, version: None }, connection_delay: 0ns }
+SUCCESS Channel {
+    ordering: Unordered,
+    a_side: ChannelSide {
+        chain: BaseChainHandle {
+            chain_id: ChainId {
+                id: "shielded-expedition.88f17d1d14",
+                version: 0,
+            },
+            runtime_sender: Sender { .. },
+        },
+        client_id: ClientId(
+            "07-tendermint-2272",
+        ),
+        connection_id: ConnectionId(
+            "connection-1079",
+        ),
+        port_id: PortId(
+            "transfer",
+        ),
+        channel_id: Some(
+            ChannelId(
+                "channel-660",
+            ),
+        ),
+        version: None,
+    },
+    b_side: ChannelSide {
+        chain: BaseChainHandle {
+            chain_id: ChainId {
+                id: "osmo-test-5",
+                version: 5,
+            },
+            runtime_sender: Sender { .. },
+        },
+        client_id: ClientId(
+            "07-tendermint-2639",
+        ),
+        connection_id: ConnectionId(
+            "connection-2469",
+        ),
+        port_id: PortId(
+            "transfer",
+        ),
+        channel_id: Some(
+            ChannelId(
+                "channel-6154",
+            ),
+        ),
+        version: None,
+    },
+    connection_delay: 0ns,
+}
+=========================================================
+ namadac --base-dir $BASE_DIR \
+    ibc-transfer \
+    --amount 3 \
+    --source iamvision_nam_relayer \
+    --receiver osmo1etc6wy6pf5h2eqyrax6kejhef6jek42qdns0tr \
+    --token naan \
+    --channel-id channel-660 \
+    --node https://namada-testnet-rpc.itrocket.net/
+Enter your decryption password: 
+Transaction added to mempool.
+Wrapper transaction hash: E75608925BC40322DBD823CC84DBE8B9B9DAC7082DDB6E923E6080D4B85CAF23
+Inner transaction hash: 9FCF228978B41D88C683CE40293DF857F075FAB229DADE5BABDEF650AFC00651
+Wrapper transaction accepted at height 103482. Used 24 gas.
+Waiting for inner transaction result...
+Transaction was successfully applied at height 103483. Used 6193 gas
+=========================================================
+osmosisd tx ibc-transfer transfer \
+  transfer \
+  channel-6154 \
+  tnam1qput33gnfu3642wh8p93aajcxn72yxpfpqhzwxtc \
+  1000000uosmo \
+  --from wallet2 \
+  --gas auto \
+  --gas-prices 0.035uosmo \
+  --gas-adjustment 1.2 \
+  --node "https://rpc.testnet.osmosis.zone:443" \
+  --home "$HOME/.osmosisd" \
+  --chain-id osmo-test-5 \
+  --yes
+Enter keyring passphrase (attempt 1/3):
+gas estimate: 131244
+code: 0
+codespace: ""
+data: ""
+events: []
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: B5A24A8252EBC7D295B719A435860443AE50B2443FF47E02F0C20E869DAA5B29 
+=========================================================
+
+Channels created successfully! 
+Namada channel: 660
+Osmosis channel: 6154
+Proof - Namada -> Osmosis: https://namada-se.explorer.2pilot.dev/transaction/E75608925BC40322DBD823CC84DBE8B9B9DAC7082DDB6E923E6080D4B85CAF23
+Proof - Osmosis -> Namada: https://testnet.osmosis.explorers.guru/transaction/B5A24A8252EBC7D295B719A435860443AE50B2443FF47E02F0C20E869DAA5B29
+
+namadac balance
+naan: 30.5
+transfer/channel-660/uosmo: 1000000
+
+osmosisd query bank balances
+balances:
+- amount: "3"
+  denom: ibc/1543776B7FC33131DE80D90AB644C5F955FF563111E9EF6B50EB189AFCD567ED
+- amount: "48923563"
+  denom: uosmo
+pagination:
+  next_key: null
+  total: "0
